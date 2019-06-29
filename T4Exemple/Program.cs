@@ -12,12 +12,20 @@ namespace T4Exemple
         {
 
             Stagiaire s = new Stagiaire();
-            
+
 
             // RunTime generator
-            //Console.WriteLine(new RuntimeTextTemplate1().TransformText());
-            //Console.ReadKey();
+            //var pageContent = new RuntimeTextTemplate1().TransformText();
+            //System.IO.File.WriteAllText("outputPage.cs", pageContent);
 
+
+            RuntimeTextTemplate1 t = new RuntimeTextTemplate1();
+            t.Session =   new Dictionary<string, object>();
+            t.Session["TimesToRepeat"] = 5;
+            // Add other parameter values to t.Session here.
+            t.Initialize(); // Must call this to transfer values.
+            string resultText = t.TransformText();
+            System.IO.File.WriteAllText("outputPage.cs", resultText);
 
         }
     }
